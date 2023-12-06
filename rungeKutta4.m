@@ -1,4 +1,7 @@
 function [yout, approxList] = rungeKutta4(fxn, t0, y0, tn, h)
+    % Ensure y0 is a column vector
+    y0 = y0(:); 
+
     % Number of steps
     steps = floor((tn - t0) / h);
     
@@ -7,10 +10,10 @@ function [yout, approxList] = rungeKutta4(fxn, t0, y0, tn, h)
     t = t0;
     
     % Initialize approxList with an extra column for time
-    approxList = zeros(steps + 1, 1 + numel(y0));
+    approxList = zeros(steps + 1, length(y0) + 1);
     
     % Store initial conditions
-    approxList(1, :) = [t, y0(1), y0(2)]; % Adjust this line
+    approxList(1, :) = [t, y0']; % Store initial conditions
 
     % Iterate using RK4 method
     for i = 1:steps
@@ -24,7 +27,7 @@ function [yout, approxList] = rungeKutta4(fxn, t0, y0, tn, h)
         t = t + h;
 
         % Store the results
-        approxList(i + 1, :) = [t, y(1), y(2)]; % Adjust this line
+        approxList(i + 1, :) = [t, y']; % Store the results
     end
     
     % Final approximation
