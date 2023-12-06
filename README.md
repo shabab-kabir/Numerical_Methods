@@ -1,4 +1,4 @@
-# Numerical_Methods
+# Numerical Methods & Analysis
 A set of MatLab implementations of various algorithms found within Classical Numerical Analysis.
 
 ## Example Output of RK45 (MatLab)
